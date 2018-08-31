@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    var counter = 0;
+    function addChart(spec) {
+      $('body').append(`<h2>Specification ${counter}</h2>`);
+      $('body').append(`<div id="vis${counter}"></div>`);
+      return vegaEmbed(`#vis${counter++}`, spec);
+    }
+    var specs = new URL(window.location).searchParams.get('spec');
+    if (specs !== null) {
+      specs.split(',').forEach(spec => $.getJSON(spec, function(data){
+        console.log(data);
+        addChart(data)
+      }));
+    } else {
+      $('body').html("Usage:<br/>http://index.html?spec=spec1.json<br/>http://vega.html?spec=spec1.json,spec2.json,spec3.json,...")
+    }
+  </script>
+</body>
+</html>
