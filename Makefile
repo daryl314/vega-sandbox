@@ -2,7 +2,7 @@
 SHELL := /bin/bash
 
 # targets without associated files
-.PHONY: offline serve clean
+.PHONY: offline serve edit clean
 
 # spin up web server on localhost
 serve:
@@ -20,8 +20,17 @@ jslib:
 	mkdir -p jslib
 	if [[ -f index.html.bak ]]; then INFILE=index.html.bak; else INFILE=index.html; fi; pushd jslib >/dev/null; for SRC in $$(grep "src=" ../$$INFILE | sed -e "s/.*src=\"//" -e "s/\".*//"); do wget $$SRC; done; popd >/dev/null
 
+# run editor
+edit: editor
+	cd editor && yarn start
+
+# download and configure vega editor
+editor:
+	git clone https://github.com/vega/editor
+	cd editor && yarn
+
 # cleanup
 clean:
 	if [[ -f index.html.bak ]]; then command mv index.html.bak index.html; fi
 	rm -rf jslib
-
+	rm -rf editor
