@@ -12,3 +12,4 @@ Usage:
 * View multiple specifications with `?spec=spec1.json,spec2.json,spec3.json`
 * Create an offline version with `make offline`.  Revert with `make clean`
 * Launch the web-based editor with `make edit` (requires yarn to be installed)
+    * Put data to be referenced from editor in editor/public

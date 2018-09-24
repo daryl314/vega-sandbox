@@ -6,7 +6,7 @@ SHELL := /bin/bash
 
 # spin up web server on localhost
 serve:
-	python -c 'import socket, BaseHTTPServer as bhs, SimpleHTTPServer as shs; s=socket.socket(); s.bind(("", 0)); port = s.getsockname()[1]; s.close(); print("Serving on localhost:%d" % port); bhs.HTTPServer(("127.0.0.1", port), shs.SimpleHTTPRequestHandler).serve_forever()'
+	python2 -c 'import socket, BaseHTTPServer as bhs, SimpleHTTPServer as shs; s=socket.socket(); s.bind(("", 0)); port = s.getsockname()[1]; s.close(); print("Serving on localhost:%d" % port); bhs.HTTPServer(("127.0.0.1", port), shs.SimpleHTTPRequestHandler).serve_forever()'
 
 # create offline version
 offline: index.html.bak
