@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega@4"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>
 </head>
 <body>
   <script type="text/javascript">
@@ -22,7 +22,7 @@
         addChart(data)
       }));
     } else {
-      $('body').html("Usage:<br/>http://index.html?spec=spec1.json<br/>http://vega.html?spec=spec1.json,spec2.json,spec3.json,...")
+      $('body').html("Usage:<br/>http://index.html?spec=spec1.json<br/>http://vega.html?spec=spec1.json,spec2.json,spec3.json,...<br/><a href='index.html?spec=bar.json'>bar.json</a>");
     }
   </script>
 </body>
