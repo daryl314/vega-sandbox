@@ -29,8 +29,20 @@ editor:
 	git clone https://github.com/vega/editor
 	cd editor && yarn
 
+# transpile ES6 code
+es6: node_modules/@babel index.html.bak
+	mkdir -p jslib/tmp
+	mv jslib/*@* jslib/tmp/
+	for FILE in jslib/tmp/*; do npx babel $$FILE > jslib/$$(basename $$FILE); done
+	rm -rf jslib/tmp
+
+# install babel.js
+node_modules/@babel:
+	npm install --save-dev @babel/core @babel/cli
+
 # cleanup
 clean:
 	if [[ -f index.html.bak ]]; then command mv index.html.bak index.html; fi
 	rm -rf jslib
 	rm -rf editor
+	rm -rf node_modules package-lock.json
