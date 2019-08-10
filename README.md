@@ -13,3 +13,16 @@ Usage:
 * Create an offline version with `make offline`.  Revert with `make clean`
 * Launch the web-based editor with `make edit` (requires yarn to be installed)
     * Put data to be referenced from editor in editor/public
+
+## Copying to a new location ##
+
+* `make clean && cp index.html NEW_LOCATION`
+* execute following script to render `bar.json`
+
+```bash
+#!/bin/bash
+PORT=$(python -c 'import socket; s=socket.socket(); s.bind(("", 0)); print(s.getsockname()[1]); s.close()')
+python2 -c "import BaseHTTPServer as bhs, SimpleHTTPServer as shs; bhs.HTTPServer(('127.0.0.1', $PORT), shs.SimpleHTTPRequestHandler).serve_forever()" &
+sleep 1
+open "http://localhost:$PORT/?spec=bar.json"
+```
